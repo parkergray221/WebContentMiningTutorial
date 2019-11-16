@@ -1,0 +1,69 @@
+<html>
+<head>
+    <title>Content Extraction Algorithm</title>
+      <link rel="stylesheet" href="style.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+    <table style="width:100%">
+        <tr>
+            <th><strong>Back:</strong> <a href="part3.html">Performing Web Content Mining</a></th><th><strong>Up:</strong> <a href="First.html">Index</a></th><th><strong>Next:</strong> <a href="part5.html">Companies Using Content Mining</a></th>
+        </tr>
+    </table>
+    <h1 class="centered-text"><strong>Content Extraction Algorithm</strong></h1>
+    <p class="tab">
+    One of the methods for content extraction is segmenting the webpage into blocks. Most webpages on the Internet are still written in HTML. The layouts of these SGML documents (of which HTML sans HTML5 is a part of) follow the Document Object Model tree structure of the World Wide Web Consortium.
+    ContentExtractor computes the Inverse Block Document Frequency (IBDF) which is defined as: If a block appears in multiple webpages the block will have a smaller Inverse Block Document Frequency (IBDF) than one that appears only in one webpage.
+    </p>
+    <p class="tab">
+    Below is a breakdown of the steps done in Content Extraction:
+    </p>
+    <h3>Algorithm</h3>
+    <p class="tab">
+   The input to the algorithms is a set of (at least two) webpages belonging to a class of webpages. A class is defined as a set of webpages from the same website whose
+designs or structural contents are very similar. The output of the algorithms are the primary content blocks in the given class of webpages.
+    </p>
+    <h3>GetBlockSet</h3>
+    <p class="tab">
+   The first step of all our algorithms is to use the GetBlockSet routine to partition each page into blocks. What we mean by 'block' here is any code that exists between two tags- take the 'tr' and '/tr' tags for example. Anything within the 'tr' and '/tr' tags will be sub-blocks the block that is labelled 'tr'. And of course, instances of 'tr' itself will be sub-blocks of 'table', and 'table' will be a sub-block of 'html'. The GetBlockSet routine takes an HTML page and an ordered tag-set that applies to said HTML page as input into its routine. GetBlockSet takes a tag from the tag-set one by one and calls the GetBlocks routine for each block of code that uses that tag. New sub blocks created by GetBlocks are added to the block set and the generating main
+block is removed from the set.
+   </p>
+    <h3>GetBlocks</h3>
+    <p class="tab">
+   GetBlocks takes a full document or a part of a document, written in HTML, and a tag as its input. It partitions the document into blocks according to the input tag. For example, in case of the 'TABLE' tag given as input, it will produce the DOM tree with all the table blocks. It does a breadth-first search of the DOM tree (if any) of the HTML page. If the input tag is TABLE and there is no table structure available in the HTML page, it does not partition
+the page. In that case, the whole input page comes back as a single block. In case of other tags such as 'p', it partitions the page/block into blocks/sub-blocks separated by those tags. The below figure shows the structure of two HTML pages. It also shows the blocks that our blocking algorithm identifies for each of these pages.
+   </p>
+    <div class="center">
+        <figure style="text-align: center">
+                <img src="GetBlockSet.jpg" width="500px"/>
+                <figcaption style="text-align: center">Block structures obtained by GetBlockSet</figcaption>
+        </figure>    
+    </div>
+   <h3>Identifying Primary Content Blocks</h3>
+    <p class="tab">
+   After the blocks have been identified, the second step of the process involves identifying the primary content blocks and separating them from the non-content blocks. Primary content blocks are those blocks that contain the information we queried for- in the above GetBlockSet example, the user queried for images and text within the webpage, and the primary content blocks are those text image and text blocks listed in the "Output of HTML 1" and "Output of HTML 2" sections. Non-content blocks refers to blocks that don't contain the queried information.
+   </p>
+   <h3>Pseudocode for ContentExtractor</h3>
+    <div class="center">
+        <figure style="text-align: center">
+                <img src="ContentExtractorPseudocode.jpg" width="500px"/>
+                <figcaption style="text-align: center">ContentExtractor Algorithm</figcaption>
+        </figure>    
+    </div> 
+     <h3>Similarity Function</h3>
+   In the process of divvying up the webpage into blocks, it will be time-consuming to create more blocks than is necessary- to prevent this, we use an algorithm to check the similarity of two blocks. Given two blocks, Sim returns the cosine between their block feature vectors. We use a threshold value to determine similarity; i.e, if the similarity measure is greater than the threshold value, then the two blocks are accepted as identical. The threshold value can be changed according to the needs of the application and affects the precision and recall of the algorithm.
+    <div class="center">
+        <figure style="text-align: center">
+                <img src="Similarity_Algorithm.jpg" width="500px"/>
+                <figcaption style="text-align: center">Similarity Function</figcaption>
+        </figure>    
+    </div> 
+    
+    </body>
+    
+    </html>
+    
+    
+    

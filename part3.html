@@ -1,0 +1,49 @@
+<html>
+<head>
+    <title>Performing Web Content Mining</title>
+      <link rel="stylesheet" href="style.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+    <table style="width:100%">
+        <tr>
+            <th><strong>Back:</strong> <a href="part2.html">Tools Used for Web Content Mining</a></th><th><strong>Up:</strong> <a href="First.html">Index</a></th><th><strong>Next:</strong> <a href="part4.html">Content Extraction Algorithm</a></th>
+        </tr>
+    </table>
+    <h1 class="centered-text"><strong>Performing Web Content Mining</strong></h1>
+    <h3>Step 1: Scraping</h3>
+    <p class="tab">
+        The first step of web content mining is web scraping: getting the information that we need from a web page. Scraping is simultaneously the most important and most straightforward part of web content mining. It requires the application to determine what is important and what is not; in other words, which features it will need to extract for later classification.  
+        This can be done manually if one knows the layout of the sites beforehand: the developer only needs to specify what elements should be extracted, through their appropriate HTML/CSS tags, XPath elements, or other identifiers. For more advanced applications, or applications where the layout of the site is not known, we need to generate what is called a <i>wrapper</i> that 
+        evaluates a website and determines what features should be extracted based on our rules. We can use a type of machine learning called <b>wrapper induction</b> to determine which features to extract. Wrapper induction uses supervised learning to generate a list of rules from a webpage that cover all of the features we are looking for without covering anything else. 
+        There is also an alternative to wrapper induction called <b>automatic feature extraction</b>, which generates a wrapper from a sample page and refining this default wrapper across multiple pages as mismatches arise. However, AFE carries a high computational cost (exponential time) and has several problems, including difficulty in generating attribute names and 
+        needing integration if extracting data from multiple sites. Regardless, you can use either method to figure out the wrapper and feed it to the scraper to extract the features we want.
+    </p>
+    
+    <p class="tab">
+        As discussed in the previous page, we're using Portia as our demo tool, which provides a GUI interface and utilizes Scrapy's spiders. With Portia, we simply select the kinds of elements that we wish to extract, and Portia will automatically extract pages with those elements based on their HTML/CSS tag.  A demo is shown below.
+    </p>
+    <div class="center">
+        <video width="500" height="300" controls>
+            <source src="PortiaDemo.mp4" type=video/mp4>
+        </video>
+    </div>
+    
+    <h3>Step 2: Operating on scraped data</h3>
+    <p class="tab">
+        Once we have successfully extracted the data we want, we can now further extract useful information from it.  The method of extraction varies widely with the implementation: for some applications, one has to use advanced algorithms to automatically extract the information needed (some of which will be expanded upon in the next section).  However, for our application, searching StackOverflow to find the most common problems in SQL, the simplest implementation would be to simply search the extracted data for a string pattern; for example, we can search the above example output for the string "SQL" to find information about popular SQL problems that people ask about on Stack Overflow.
+    </p>
+    
+    <div class="center">
+        <figure style="text-align: center">
+                <img src="Search_for_SQL.png" width="500px"/>
+                <figcaption style="text-align: center">Searching the mined data for "SQL"</figcaption>
+        </figure>    
+    </div> 
+    <p class="tab">
+        Another simple implementation for our application would be to convert the JSON lines output file to SQL or another database language, with a tool such as SQLizer.  This would allow us to perform more complex queries on the data set. Web content mining is pretty open ended- you can do what you'd like with the data, it all depends on your own goals.
+    </p>
+    </body>
+    </html>

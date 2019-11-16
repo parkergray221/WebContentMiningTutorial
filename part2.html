@@ -1,0 +1,78 @@
+<html>
+<head>
+    <title>Tools Used for Web Content Mining</title>
+      <link rel="stylesheet" href="style.css">
+    <style>
+        
+    </style>
+</head>
+<body>
+    <table style="width:100%">
+        <tr>
+            <th><strong>Back:</strong> <a href="part1.html">Introduction to Web Content Mining</a></th><th><strong>Up:</strong> <a href="First.html">Index</a></th><th><strong>Next:</strong> <a href="part3.html">Performing Web Content Mining</a></th>
+        </tr>
+	</table>
+	<h1 class="centered-text"><strong>Tools Used for Web Content Mining</strong></h1>
+    <h3>Overview of Tools</h3>
+    <p class="tab">
+	In the field of web content mining, the types of software you can use to accomplish the scraping and examination vary in their type- there are scripting languages built from the ground up to serve the purpose of web content mining, modules
+	for existing languages that implement scraping capability, all-in-one GUI interfaces built in a different language to accomplish the same goal, and of course there are command line programs that are less elegant visually that also 
+	accomplish this goal. A very wide spectrum of possibilities.
+	</p>
+
+	<h3>Scrapy</h3>
+	<div class="center">
+    <figure style="text-align: center">
+        <img src="scrapy.png" width="300px">
+        <figcaption style="text-align: center">Scrapy logo</figcaption>
+    </figure>   
+    </div>
+	<p class="tab">
+	The most popular tool to use for web content mining (and scraping in general more broadly) is appropriately named Scrapy. Scrapy is an open-source package for Python. It bills itself as "an application framework for crawling 
+	web sites and extracting structured data which can be used for a wide range of useful applications, like data mining, information processing or historical archival." How Scrapy works is simple- implementing scrapers that it 
+	calls <i>spiders</i>- though the name might sound creepy, a spider is really just a python file that you point in the direction of the URL you'd like to scrape and define within its parse function what sort of data you want 
+	from the URL. Below, there's a screenshot showing an example spider, the command to run it, and its output.
+	</p>
+	<div class="center">
+    <figure style="text-align: center">
+        <img src="example.png" width="706px">
+        <figcaption style="text-align: center">Example scraper</figcaption>
+    </figure>   
+    </div>
+	<p class="tab">
+	In short, define the URL to scrape in the start_urls[] array, define the attributes to scrape in the prase() function, add in some handling for if there's a following page after the URL, run it in your command line, and voila,
+	you have in your hands a JSON file that has scraped the data you're interested in far faster than you can do by hand. Scrapy can handle CSS tags as shown here, but it can also target specific elements of a webpage via 
+	their class (give me all instances of this class on this webpage) and it can cover XPath expressions as well. It's highly customizable, versatile, and pretty simple to use, lending to its popularity.
+	</p>
+	
+	<h3>Octoparse</h3>
+	<div class="center">
+	<figure style="text-align: center">
+        <img src="octoparse.png" width="300px">
+        <figcaption style="text-align: center">Octoparse logo</figcaption>
+    </figure>   
+    </div>
+	<p class="tab">
+	The other big tool is Octoparse, Octoparse is a GUI type of scraper that is <i>proprietary</i> (BOOOOO!). It's got free and paid versions. Since it's closed source, we can't really describe <i>how</i> exactly it works under
+	the hood, but on the user side, it goes like this- you input a website to scrape, and Octoparse will extract and order its contents before exporting it in a database form of your choice. It automatically groups information 
+	and displays conclusions. It doesn't require any coding expertise to use, but it isn't very adaptable as a result- whether or not it will do what you want is entirely to the whim of what's behind that black-box that is its
+	closed source code. Predictably, since this tool is closed source, we did not choose it as our tool.
+	</p>
+
+	<h3>Portia</h3>
+	<p class="tab">
+	Which brings us to our last tool. When we gave our proposal presentation, Professor Grewe wanted us to pick both a popular framework for scraping as well as something that has good visualization for a possible demo. Scrapy 
+	appears at first as a reasonable choice until we recognize that its visualization tools do not exist. So another tool is necessary. When scouring for the right tool, there are a bunch of smaller projects that do have 
+	visualization, but they don't hit the popularity requirement. Fortunately, Portia happens to exist. Portia's just a small github project in the corner of the site, but importantly, Portia plugs into Scrapy in that it 
+	borrows Scrapy's spider code schema exactly (the meat of Scrapy in other words) but adds on top of the existing Scrapy spider a nice visualization layer of the output. Perfect! Below you can see a screenshot of what
+	exactly this visualization element looks like- Portia is a lot more user friendly in this way than Scrapy is. 
+	</p>
+	<div class="left">
+	<figure style="text-align: left">
+        <img src="portia-follow-patterns.png" width="1500px">
+        <figcaption style="text-align: center">Example visualization. Neatly displays site to be crawled, rules of the crawler, regular expression arguments.</figcaption>
+    </figure>   
+	</div>
+	<p class="tab">
+	We chose Portia as our demonstration tool for this project on account of its presentation value and its use of the popular tool Scrapy's spiders. We'll expand on Portia and the intricacies of web content mining going forward.
+	</p>
